@@ -19,46 +19,48 @@ Synthesis requires three files as follows,
 ◦ Verilog/VHDL Files (.v or .vhdl or .vhd)
 * The .v File must contain the following commands
   module alu_32bit_case(y,a,b,f);
-###input [31:0]a;
-input [31:0]b;
-input [2:0]f;
-output reg [31:0]y;
-always@(*)
-begin
-case(f)
-3'b000:y=a&b; //AND Operation
-3'b001:y=a|b; //OR Operation
-3'b010:y=~(a&b); //NAND Operation
-3'b011:y=~(a|b); //NOR Operation
-3'b100:y=a^b; //XOR Operation
-3'b101:y=~(a^b); //XNOR Operation
-3'b110:y=~a; //NOT of a
-3'b111:y=~b; //NOT of b
-endcase
-end
-endmodule
+
+input [31:0]a;     
+input [31:0]b;     
+input [2:0]f;     
+output reg [31:0]y;    
+always@(*)      
+begin      
+case(f)      
+3'b000:y=a&b; //AND Operation       
+3'b001:y=a|b; //OR Operation       
+3'b010:y=~(a&b); //NAND Operation      
+3'b011:y=~(a|b); //NOR Operation       
+3'b100:y=a^b; //XOR Operation      
+3'b101:y=~(a^b); //XNOR Operation      
+3'b110:y=~a; //NOT of a        
+3'b111:y=~b; //NOT of b      
+endcase      
+end      
+endmodule     
+
 * The Run.tcl File must contain the following commandsL:
-###
-read_libs /cadence/install/FOUNDRY-01/digital/90nm/dig/lib/slow.lib
-read_hdl alu_32bit.v
-elaborate
+
+read_libs /cadence/install/FOUNDRY-01/digital/90nm/dig/lib/slow.lib      
+read_hdl alu_32bit.v       
+elaborate      
+      
+syn_generic      
+report_area     
+syn_map    
+report_area       
+syn_opt      
+report_area      
+   
+report_area > alu_32bit_area.txt    
+report_power > alu_32bit_power.txt     
+report_area > alu_32bit_cell.txt     
+report_gates > alu_32bit_gates.txt      
+    
+write_hdl > alu_32bit_netlist.v      
+     
+gui_show    
  
-syn_generic
-report_area
-syn_map
-report_area
-syn_opt
-report_area 
-
-report_area > alu_32bit_area.txt
-report_power > alu_32bit_power.txt
-report_area > alu_32bit_cell.txt
-report_gates > alu_32bit_gates.txt
-
-write_hdl > alu_32bit_netlist.v
-
-gui_show
-
 ### Step 2 : Performing Synthesis
 
 The Liberty files are present in the library path,
