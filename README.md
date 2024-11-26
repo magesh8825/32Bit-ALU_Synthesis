@@ -18,8 +18,8 @@ Synthesis requires three files as follows,
 
 ◦ Verilog/VHDL Files (.v or .vhdl or .vhd)
 * The .v File must contain the following commands
-  module alu_32bit_case(y,a,b,f);
-
+```
+module alu_32bit_case(y,a,b,f);
 input [31:0]a;     
 input [31:0]b;     
 input [2:0]f;     
@@ -38,10 +38,10 @@ case(f)
 endcase      
 end      
 endmodule     
-
+```
 * The Run.tcl File must contain the following commandsL:
 
-read_libs /cadence/install/FOUNDRY-01/digital/90nm/dig/lib/slow.lib      
+```read_libs /cadence/install/FOUNDRY-01/digital/90nm/dig/lib/slow.lib      
 read_hdl alu_32bit.v       
 elaborate      
       
@@ -60,7 +60,7 @@ report_gates > alu_32bit_gates.txt
 write_hdl > alu_32bit_netlist.v      
      
 gui_show    
- 
+ ```
 ### Step 2 : Performing Synthesis
 
 The Liberty files are present in the library path,
